@@ -21,6 +21,10 @@ Stores user identities and authenticating requests using Custom Authentication s
 
 Domain service to keep some stored items.
 
+### TacTicA.Services.Cities
+
+Domain service that communicates with stupid-simple third-parties for Cities geocoding.
+
 ### TacTicA.Common
 
 Shared library. 
