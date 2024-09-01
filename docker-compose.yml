@@ -1,0 +1,100 @@
+version: '3.4'
+
+services:
+  tactica.apigateway:
+    image: ${DOCKER_REGISTRY-}tacticaapigateway
+    build:
+      context: .
+      dockerfile: src/TacTicA.Api/Dockerfile
+    depends_on:
+      tactica-mongo:
+        condition: service_started
+      tactica-rabbitmq:
+        condition: service_healthy
+    environment:
+      - mongo__connectionString=mongodb://user:password@tactica-mongo:27017
+    ports:
+      - "5000:80"
+
+  tactica.services.identity:
+    image: ${DOCKER_REGISTRY-}tacticaservicesidentity
+    build:
+      context: .
+      dockerfile: src/TacTicA.Services.Identity/Dockerfile
+    depends_on:
+      tactica-mongo:
+        condition: service_started
+      tactica-rabbitmq:
+        condition: service_healthy
+    environment:
+      - mongo__connectionString=mongodb://user:password@tactica-mongo:27017
+    ports:
+      - "5050:80"
+
+  tactica.services.items:
+    image: ${DOCKER_REGISTRY-}tacticaservicesitems
+    build:
+      context: .
+      dockerfile: src/TacTicA.Services.Items/Dockerfile
+    depends_on:
+      tactica-mongo:
+        condition: service_started
+      tactica-rabbitmq:
+        condition: service_healthy
+    environment:
+      - mongo__connectionString=mongodb://user:password@tactica-mongo:27017
+    ports:
+      - "5005:80"
+
+  tactica.services.cities:
+    image: ${DOCKER_REGISTRY-}tacticaservicescities
+    build:
+      context: .
+      dockerfile: src/TacTicA.Services.Cities/Dockerfile
+    ports:
+      - "5010:80"
+
+  tactica-mongo:
+    image: mongo
+    container_name: "tactica-mongo"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+
+  mongo-express:
+    image: mongo-express
+    container_name: "tactica-mongo-express"
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: password
+      ME_CONFIG_MONGODB_URL: mongodb://user:password@tactica-mongo:27017/
+      ME_CONFIG_BASICAUTH: "true"
+
+  tactica-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: "tactica-rabbitmq"
+    ports:
+      - "5673:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+      RABBITMQ_NODE_PORT: "5672"
+      RABBITMQ_NODE_IP_ADDRESS: ""
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 30s
+      timeout: 30s
+      retries: 10
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+volumes:
+  rabbitmq_data:

@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "tactica.apigateway": "StartDebugging",
+        "tactica.services.identity": "StartDebugging",
+        "tactica.services.items": "StartDebugging",
+        "tactica.services.cities": "StartDebugging"
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TacTicA.Services.Cities",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Cities/{action}/{cityName}": {
+      "get": {
+        "tags": [
+          "Cities"
+        ],
+        "parameters": [
+          {
+            "name": "cityName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cities/{action}/{ipAddress}": {
+      "get": {
+        "tags": [
+          "Cities"
+        ],
+        "parameters": [
+          {
+            "name": "ipAddress",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Cities/{action}/{letters}": {
+      "get": {
+        "tags": [
+          "Cities"
+        ],
+        "parameters": [
+          {
+            "name": "letters",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Application uses JWT based bearer authentication/authorization.\nRefer https://swagger.io/docs/specification/authentication/bearer-authentication/ for more details.\nAuthorization HTTP header has the following format:\nBearer <token>\nThe token value can be obtained via Identity API",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

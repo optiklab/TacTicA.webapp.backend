@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "f6358cc1-76bf-47d4-84f2-fd2ec8236c8a",
+		"name": "tactica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36330574"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5050/signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\":\"user1@email.com\",\r\n\t\"name\":\"anton1\",\r\n\t\"password\":\"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5050/api/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5050/signin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\":\"user1@email.com\",\r\n\t\"password\":\"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5050/api/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"signin"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5005/items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiNTk2MWU5Ni1jYjI3LTRlZjUtYThiYy1iYjlmNjQ4MTM5NGIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJpYXQiOjE3MjQ4NzI2NTksImV4cCI6MTcyNDg3Mjk1OSwidW5pcXVlX25hbWUiOiJiNTk2MWU5Ni1jYjI3LTRlZjUtYThiYy1iYjlmNjQ4MTM5NGIifQ.lcQvb0ylgLfgHbIJ7lMmSLbqDtp1TUzZg59NzTOeBZ8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE items",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiNTk2MWU5Ni1jYjI3LTRlZjUtYThiYy1iYjlmNjQ4MTM5NGIiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjUwMDAiLCJpYXQiOjE3MjQ4NzI2NTksImV4cCI6MTcyNDg3Mjk1OSwidW5pcXVlX25hbWUiOiJiNTk2MWU5Ni1jYjI3LTRlZjUtYThiYy1iYjlmNjQ4MTM5NGIifQ.lcQvb0ylgLfgHbIJ7lMmSLbqDtp1TUzZg59NzTOeBZ8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category\": \"hobby2\",\r\n    \"name\": \"blah blah2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"items"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
